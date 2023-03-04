@@ -2,18 +2,32 @@ package jm.task.core.jdbc.service;
 
 import jm.task.core.jdbc.model.User;
 
+import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserService {
-    void createUsersTable();
 
-    void dropUsersTable();
+    @Transactional
+    void createUsersTable() throws SQLException;
 
-    void saveUser(String name, String lastName, byte age);
 
-    void removeUserById(long id);
+    @Transactional
+    void dropUsersTable() throws SQLException;
 
-    List<User> getAllUsers();
 
-    void cleanUsersTable();
+    @Transactional
+    void saveUser(String name, String lastName, byte age) throws SQLException;
+
+
+    @Transactional
+    void removeUserById(long id) throws SQLException;
+
+
+    @Transactional
+    List<User> getAllUsers() throws SQLException;
+
+
+    @Transactional
+    void cleanUsersTable() throws SQLException;
 }
